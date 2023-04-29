@@ -1,0 +1,71 @@
+{% load static %}    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <script src="{% static 'js/signup.js' %}"></script>
+
+<form method="post" id="my_form" name="my_form">
+    {% csrf_token %}
+    <input type="radio" id="cb1" class="chb" name="tab">
+    <input type="radio" id="cb2" class="chb" name="tab">
+
+
+        <div class="cover">
+
+            <div class="info info1">
+
+                <div class="btn">
+
+                    <label for="cb1" class="sul">
+                        <p class="su">Sign Up</p>
+                    </label>
+
+                    <label for="cb2" class="lil">
+                        <p class="li">Log In</p>
+                    </label>
+
+                </div>
+            </div>
+            <div class="info info2">
+
+                <div class="login-form fm ">
+                    <h3>
+                        Log In
+                    </h3>
+                    <div class="formm">
+                        <input type="text" name="login_username" id="login_username" placeholder="Username">
+                        <input type="password" name="login_password" id="login_password" placeholder="Password">
+                        <input type="hidden" name="is_login" id="is_login" value="1">
+                        <input type="submit" value="Log In" class="li-btn butn">
+                        
+                    </div>
+                </div>
+
+                <div class="signup-form fm">
+                    <h3>
+                        Sign Up
+                    </h3>
+                    <div class="formm">
+                        <input type="text" name="signup_username" id="signup_username" placeholder="Username">
+                        <input type="email" name="signup_email" id="signup_email" placeholder="E-Mail">
+                        <input type="password" name="signup_password" id="signup_email" placeholder="Password">
+                        <input type="password" name="signup_password2" id="signup_email2" placeholder="Confirm Password">
+                        <input type="submit" value="Sign Up" class="su-btn butn">
+                        <script>
+                        const signupButton = document.querySelector('.su-btn');
+                         signupButton.addEventListener('click', function() {
+                        // Set the value of the is_login field to 0 (false) when the Sign Up button is clicked
+                        document.querySelector('#is_login').value = '0';
+                        });
+                        {% comment %} document.querySelector('#my_form').addEventListener('submit', function() {
+                            // Submit the form
+                            return true;
+                        }); {% endcomment %}
+                        </script>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+</form>

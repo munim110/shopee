@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #123;
+    font-family: 'Raleway';
+}
+
+.chb{
+    display: none;
+}
+
+.cover {
+    position: fixed;
+    width: 90vw;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.info,
+.info1 {
+    position: absolute;
+    width: 40.5%;
+    height: 100%;
+    left: 0;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: left 1s;
+    z-index: 4;
+}
+
+.info1 {
+    background: linear-gradient(blueviolet, orange);
+}
+
+.btn {
+    width: 50%;
+    height: 3rem;
+    border-radius: 3rem;
+    border: 1px solid whitesmoke;
+    position: relative;
+}
+
+p {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: whitesmoke;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition-property: visibility 10ms linear 1s, opacity;
+
+}
+
+.li {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.info2 {
+    width: 60%;
+    left: 40%;
+    background-color: #9ab;
+    z-index: 2;
+}
+
+.fm {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    transition-property: visibility, opacity;
+}
+
+.signup-form {
+    visibility: hidden;
+    opacity: 0;
+}
+
+#cb1:checked~.cover>.info2>.login-form,
+#cb2:checked~.cover>.info2>.signup-form {
+    transition: visibility 10ms linear 300ms, opacity 300ms linear 0s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#cb2:checked~.cover>.info1>.btn>.lil>.li,
+#cb1:checked~.cover>.info1>.btn>.sul>.su {
+    transition: visibility 10ms linear 100ms, opacity 100ms linear 0s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#cb1:checked~.cover>.info2>.signup-form,
+#cb2:checked~.cover>.info2>.login-form ,
+#cb1:checked~.cover>.info1>.btn>.lil>.li,
+#cb2:checked~.cover>.info1>.btn>.sul>.su {
+    transition: visibility 10ms linear 600ms, opacity 300ms linear 650ms;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.fm>h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #123;
+}
+
+.formm {
+    padding: 1rem;
+    text-align: center;
+}
+
+.formm>input {
+    width: 60%;
+    margin: 1rem;
+    padding: 1rem 0.25rem 1rem 1rem;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+    font-family: 'Raleway';
+    background-color: rgb(207, 207, 207);
+}
+
+.formm>input:not(.butn):focus {
+    background-color: whitesmoke;
+}
+
+.formm>.butn {
+    background: linear-gradient(45deg, blueviolet, orange);
+    color: whitesmoke;
+    font-weight: bold;
+    width: 40%;
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------------------------- */
+@keyframes x {
+
+    0%,
+    100% {
+        transform: scaleX(1);
+    }
+
+    50% {
+        transform: scaleX(1.5);
+    }
+}
+
+@keyframes y {
+
+    0%,
+    100% {
+        transform: scaleX(1);
+    }
+
+    50% {
+        transform: scaleX(1.5);
+    }
+}
+
+/* -------------------------------------------------------------------------------------------- */
+#cb1:checked~.cover>.info1 {
+    left: 60%;
+    animation: x 1s;
+}
+
+#cb1:checked~.cover>.info2 {
+    left: 0;
+}
+
+#cb2:checked~.cover>.info1 {
+    left: 0%;
+    animation: y 1s;
+}
+
+#cb2:checked~.cover>.info2 {
+    left: 40%;
+}
+
