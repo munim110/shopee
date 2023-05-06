@@ -46,3 +46,9 @@ def home(request):
     if request.user.is_authenticated:
         return render(request, 'home/index.html', {'user': request.user})
     return redirect(signup)
+
+
+def user_profile(request):
+    if request.user.is_authenticated:
+        return render(request, 'user/user_profile.html', {'user': request.user})
+    return redirect(signup)
