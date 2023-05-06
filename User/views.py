@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -11,15 +11,12 @@ def signup(request):
         if is_login == '1':
             username = request.POST['login_username']
             password = request.POST['login_password']
-            print(username, password)
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponse('User Logged In')
+                return redirect(home)
             else:
-                if username and password:
-                    print('username: ', username, 'password: ', password)
-                    return HttpResponse('User not found')
+                return HttpResponse('User not found')
         else:
             username = request.POST['signup_username']
             email = request.POST['signup_email']
@@ -36,5 +33,16 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
-                return HttpResponse('User signed up')
+                return redirect(signup)
     return render(request, 'user/signup.html')
+
+
+def signout(request):
+    logout(request)
+    return redirect(signup)
+
+
+def home(request):
+    if request.user.is_authenticated:
+        return render(request, 'home/index.html', {'user': request.user})
+    return redirect(signup)

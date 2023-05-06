@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>All Products</h1>
+{% for product in products %}
+<div class="product">
+    <p align="center">
+        <img src="{{ product.image.url }}" alt="{{ product.name }} width="600" height="400">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.price }} Taka</p>
+    {% if product.stock %}
+    <p>In Stock</p>
+    {% else %}
+    <p>Out of Stock</p>
+    </p>
+    {% endif %}
+    <a href="{% url 'product_detail' product.id %}">View Product</a>
+{% endfor %}
+    
+{% endblock %}

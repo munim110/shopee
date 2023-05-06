@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="product">
+    <p align="center">
+        <img src="{{ product.image.url }}" alt="{{ product.name }} width="600" height="400">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }} Taka</p>
+    {% if product.stock %}
+    <p>In Stock</p>
+    {% else %}
+    <p>Out of Stock</p>
+    </p>
+    {% endif %}
+{% endblock %}
