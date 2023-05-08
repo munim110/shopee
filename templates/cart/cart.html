@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>My Cart</h1>
+
+{% for item in items %}
+    <p>
+    {{ item.product.name }} x {{ item.quantity }} = {% widthratio item.product.price 1 item.quantity %}
+    <a href="{% url 'increase_quantity' item.product.id %}"> + </a>
+    <a href="{% url 'decrease_quantity' item.product.id %}"> - </a>
+    <a href="{% url 'remove_from_cart' item.product.id %}"> x </a>
+    </p>
+{% endfor %}
+<p>Total: {{ cart.total }}</p>
+    
+{% endblock %}

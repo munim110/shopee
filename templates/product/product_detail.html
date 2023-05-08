@@ -9,8 +9,12 @@
     <p>{{ product.price }} Taka</p>
     {% if product.stock %}
     <p>In Stock</p>
+    <p>
+        <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+    </p>
     {% else %}
     <p>Out of Stock</p>
     </p>
     {% endif %}
+    </div>
 {% endblock %}
