@@ -13,5 +13,7 @@
     </p>
 {% endfor %}
 <p>Total: {{ cart.total }}</p>
+
+<a href="{% url 'checkout' %}">Proceed to Checkout</a>
     
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Order no: {{ order.id }}</h1>
+
+
+{% for item in items %}
+    <p>
+    {{ item.product.name }} x {{ item.quantity }} = {% widthratio item.product.price 1 item.quantity %}
+    </p>
+{% endfor %}
+
+<p>Total: {{ total }}</p>
+
+<p>Address: {{ order.address }}</p>
+
+<p>Phone: {{ order.phone }}</p>
+
+<p>Time: {{ order.created_at }}</p>
+
+<p>Status: {{ order.order_status }}</p>
+
+{% endblock %}

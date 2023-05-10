@@ -2,19 +2,35 @@
 
 {% block content %}
     <div class="product">
-    <p align="center">
-        <img src="{{ product.image.url }}" alt="{{ product.name }} width="600" height="400">
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }} Taka</p>
-    {% if product.stock %}
-    <p>In Stock</p>
-    <p>
-        <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
-    </p>
-    {% else %}
-    <p>Out of Stock</p>
-    </p>
-    {% endif %}
+        <p align="center">
+            <img src="{{ product.image.url }}" alt="{{ product.name }} width="600" height="400">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>{{ product.price }} Taka</p>
+        {% if product.stock %}
+        <p>In Stock</p>
+        <p>
+            <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+        </p>
+        {% else %}
+        <p>Out of Stock</p>
+        </p>
+        {% endif %}
+        <h3>Reviews</h3>
+        {% for review in reviews %}
+
+        <p>{{ review.rating }} - {{ review.review }}</p>
+        <p>By {{ review.user.username }}</p>
+
+        {% endfor %}
+
+        Average Rating: {{ average_rating }}
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="rating" value="3">
+            <input type="text" name="review" value="Nice Product">
+            <input type="submit" value="Review">
+        </form>
     </div>
 {% endblock %}

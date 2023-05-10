@@ -65,3 +65,43 @@ class Cart(models.Model):
         self.set_total()
 
 
+
+
+order_status = (
+    ('Order Received', 'Order Received'),
+    ('Order Processing', 'Order Processing'),
+    ('On the way', 'On the way'),
+    ('Order Completed', 'Order Completed'),
+    ('Order Cancelled', 'Order Cancelled'),
+)
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(CartItem)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    order_status = models.CharField(max_length=50, choices=order_status, default='Order Received')
+    created_at = models.DateTimeField(auto_now_add=True)
+    address = models.CharField(max_length=250, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+
+
+    def __str__(self):
+        return f'{self.user.username} - {self.total}'
+    
+    def set_total(self):
+        self.total = 0
+        for item in self.items.all():
+            self.total += item.get_total()
+        self.save()
+
+    def add_item(self, product, quantity):
+        cart_item = CartItem.objects.create(product=product, quantity=quantity)
+        self.items.add(cart_item)
+        self.set_total()
+
+    def update_order_status(self, order_status):
+        self.order_status = order_status
+        self.save()
+
+    
+
